@@ -1,5 +1,4 @@
-package com.project.management.domain.model.Vehicle;
-
+package com.project.management.domain.model.VehicleRepairs;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,11 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class VehicleResponse {
+public class VehicleRepairsResponse {
 
     private String id;
-    private String brand;
-    private String color;
-    private String id_customer;
+    private String id_vehicle;
+    private String id_repairs;
 
 }
