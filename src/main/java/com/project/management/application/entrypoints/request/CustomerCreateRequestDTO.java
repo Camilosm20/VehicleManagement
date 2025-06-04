@@ -24,7 +24,7 @@ public class CustomerCreateRequestDTO {
     @NotBlank(message = "DNI is required")
     @Size(max = 30, message = "DNI must be less than or equal to 30 characters")
     @JsonProperty("DNI")
-    private String dni; // ¡Cuidado con el nombre de campo, tu JSON usa "DNI" con mayúsculas!
+    private String dni;
 
     private Integer phone;
 
