@@ -12,8 +12,11 @@ public class DNI {
 
         if (DNI.isEmpty() || DNI == null){
             throw new BussinesExceptions("DNI is required");
-        }else if(DNI.length() < 15){
-            throw new BussinesExceptions("DNI less than 15 characters");
+        }else if(DNI.length() < 10){
+            throw new BussinesExceptions("DNI less than 10 characters");
+//        }else if(){ aqui va la excepcion para cuando existe ya en la base de datos
+        }else{
+            this.DNI = DNI;
         }
 
     }
