@@ -7,7 +7,9 @@ import com.project.management.infrastructure.mappers.CustomerMapper;
 import com.project.management.infrastructure.repositories.JpaCustomerRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public class customerAdapter implements CustomerRepository {
@@ -39,4 +41,20 @@ public class customerAdapter implements CustomerRepository {
         CustomerEntity entity = jpaCustomerRepository.findByDni(dni);
         return Optional.ofNullable(customerMapper.toDomain(entity));
     }
+
+    @Override
+    public void deleteCustomer(Customer customer){
+        CustomerEntity customerEntity = customerMapper.toEntity(customer);
+        jpaCustomerRepository.delete(customerEntity);
+    }
+
+    @Override
+    public List<Customer> findAllCustomer(){
+        List<CustomerEntity> entityList = jpaCustomerRepository.findAll();
+        List<Customer> customerList = entityList.stream()
+                .map(customerMapper::toDomain)
+                .collect(Collectors.toList());
+        return customerList;
+    }
+
 }

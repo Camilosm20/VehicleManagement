@@ -1,4 +1,4 @@
-package com.project.management.application.entrypoints.responses;
+package com.project.management.application.entrypoints.responses.customer;
 
 import com.project.management.domain.model.Customer.Customer;
 import lombok.AllArgsConstructor;
