@@ -14,7 +14,6 @@ public class DNI {
             throw new BussinesExceptions("DNI is required");
         }else if(DNI.length() < 10){
             throw new BussinesExceptions("DNI less than 10 characters");
-//        }else if(){ aqui va la excepcion para cuando existe ya en la base de datos
         }else{
             this.DNI = DNI;
         }

@@ -1,13 +1,16 @@
 package com.project.management.domain.usecase.customerUseCase;
 
-import com.project.management.application.entrypoints.request.customer.CustomerUpdateRequestDTO;
-import com.project.management.domain.model.Customer.Customer;
-import com.project.management.domain.model.Exceptions.BussinesExceptions;
+import com.project.management.domain.model.Person.Fields.DNI;
 import com.project.management.domain.model.Person.Fields.Email;
 import com.project.management.domain.model.Person.Fields.Name;
 import com.project.management.domain.model.Person.Fields.Phone;
+import com.project.management.domain.request.customer.CustomerCreateRequestDTO;
+import com.project.management.domain.request.customer.CustomerUpdateRequestDTO;
+import com.project.management.domain.model.Customer.Customer;
+import com.project.management.domain.model.Exceptions.BussinesExceptions;
 import com.project.management.domain.model.repository.CustomerRepository;
 import com.project.management.infrastructure.entities.CustomerEntity;
+import com.project.management.infrastructure.mappers.CustomerMapper;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.List;
@@ -22,23 +25,30 @@ public class CustomerUseCase {
         this.customerRepository = customerRepository;
     }
 
-    public Customer createCustomer(Customer customerToCreate){
-        if (customerToCreate == null){
+    public CustomerEntity createCustomer(CustomerCreateRequestDTO customerRequest){
+        if (customerRequest == null){
             throw new BussinesExceptions("Customer data is required.");
         }
 
-        Optional<Customer> existingCustomer = customerRepository.findByDni(customerToCreate.getDni());
+        Customer customerToCreate = Customer.builder()
+                .name(new Name(customerRequest.getName()))
+                .dni(new DNI(customerRequest.getDni()))
+                .phone(new Phone(customerRequest.getPhone()))
+                .email(new Email(customerRequest.getEmail()))
+                .build();
+
+        Optional<Customer> existingCustomer = customerRepository.findByDni(customerToCreate.getDni().getDNI());
 
         if (existingCustomer.isPresent()){
             throw new BussinesExceptions("A customer with DNI " + customerToCreate.getDni() + " already exists.");
         }
 
-        Customer savedCustomer = customerRepository.createCustomer(customerToCreate);
+        CustomerEntity savedCustomer = customerRepository.createCustomer(customerToCreate);
 
         return savedCustomer;
     }
 
-    public Customer editCustomer(String dni, CustomerUpdateRequestDTO customerToUpdate){
+    public CustomerEntity editCustomer(String dni, CustomerUpdateRequestDTO customerToUpdate){
 
         if (customerToUpdate == null){
             throw new BussinesExceptions("Customer data to update is required");
@@ -55,18 +65,18 @@ public class CustomerUseCase {
         Customer customerToEdit = customer.get();
 
         if (customerToUpdate.getName() != null){
-            customerToEdit.setName(customerToUpdate.getName());
+            customerToEdit.setName(new Name(customerToUpdate.getName()));
         }
 
         if (customerToUpdate.getPhone() != null){
-            customerToEdit.setPhone(customerToUpdate.getPhone());
+            customerToEdit.setPhone(new Phone(customerToUpdate.getPhone()));
         }
 
         if (customerToUpdate.getEmail() != null){
-            customerToEdit.setEmail(customerToUpdate.getEmail());
+            customerToEdit.setEmail(new Email(customerToUpdate.getEmail()));
         }
 
-        Customer updateCustomer = customerRepository.save(customerToEdit);
+        CustomerEntity updateCustomer = customerRepository.save(customerToEdit);
 
         return updateCustomer;
     }

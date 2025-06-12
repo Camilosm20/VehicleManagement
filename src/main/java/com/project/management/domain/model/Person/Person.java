@@ -18,10 +18,10 @@ public class Person {
 
     protected String id;
 
-    protected String name;
-    protected String dni;
-    protected Integer phone;
-    protected String email;
+    protected Name name;
+    protected DNI dni;
+    protected Phone phone;
+    protected Email email;
 
 
 }

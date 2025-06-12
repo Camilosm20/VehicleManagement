@@ -1,4 +1,4 @@
-package com.project.management.application.entrypoints.responses.customer;
+package com.project.management.domain.response.customer;
 
 
 import com.project.management.domain.model.Customer.Customer;

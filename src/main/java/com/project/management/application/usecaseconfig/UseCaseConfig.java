@@ -1,4 +1,4 @@
-package com.project.management.domain.config.usecaseconfig;
+package com.project.management.application.usecaseconfig;
 
 import com.project.management.domain.model.repository.*;
 import com.project.management.domain.usecase.customerUseCase.CustomerUseCase;

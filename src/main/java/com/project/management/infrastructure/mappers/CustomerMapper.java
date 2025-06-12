@@ -20,10 +20,10 @@ public class CustomerMapper {
 
         return Customer.builder()
                 .id(entity.getId())
-                .name(entity.getName())
-                .dni(entity.getDni())
-                .phone(entity.getPhone())
-                .email(entity.getEmail())
+                .name(new Name(entity.getName()))
+                .dni(new DNI(entity.getDni()))
+                .phone(new Phone(entity.getPhone()))
+                .email(new Email(entity.getEmail()))
                 .build();
     }
 
@@ -34,10 +34,10 @@ public class CustomerMapper {
 
         return CustomerEntity.builder()
                 .id(domain.getId())
-                .name(domain.getName())
-                .dni(domain.getDni())
-                .phone(domain.getPhone())
-                .email(domain.getEmail())
+                .name(domain.getName().getName())
+                .dni(domain.getDni().getDNI())
+                .phone(domain.getPhone().getPhone())
+                .email(domain.getEmail().getEmail())
                 .build();
     }
 }
