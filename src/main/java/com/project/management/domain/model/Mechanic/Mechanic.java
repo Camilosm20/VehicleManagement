@@ -8,9 +8,8 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @SuperBuilder
-public class MechanicResponse extends Person {
+public class Mechanic extends Person {
 
     private String id;
-    private String id_person;
 
 }

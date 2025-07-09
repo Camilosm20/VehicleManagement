@@ -50,6 +50,10 @@ alter table vehiclemanagement.repairs add constraint FK_MechanicRepairs foreign 
 alter table vehiclemanagement.vehicle_repairs add constraint FK_VehicleRepairs foreign key (id_vehicle) references vehiclemanagement.vehicle(id);
 alter table vehiclemanagement.vehicle_repairs add constraint FK_RepairsVehicle foreign key (id_repairs) references vehiclemanagement.repairs(id);
 
-alter table vehiclemanagement.customer add CONSTRAINT FK_CustomerPerson FOREIGN KEY (id) REFERENCES vehiclemanagement.person(id);
+alter table vehiclemanagement.customer add CONSTRAINT FK_CustomerPerson FOREIGN KEY (id) REFERENCES vehiclemanagement.person(id) on delete cascade;
 
-alter table vehiclemanagement.mechanic add CONSTRAINT FK_MechanicPerson FOREIGN KEY (id) REFERENCES vehiclemanagement.person(id);
+alter table vehiclemanagement.mechanic add CONSTRAINT FK_MechanicPerson FOREIGN KEY (id) REFERENCES vehiclemanagement.person(id) on delete cascade;
+
+SELECT * FROM vehiclemanagement.customer INNER JOIN vehiclemanagement.person WHERE vehiclemanagement.person.DNI = 1000547391;
+
+SELECT * FROM vehiclemanagement.person;

@@ -2,10 +2,7 @@ package com.project.management.application.usecaseconfig;
 
 import com.project.management.domain.model.repository.*;
 import com.project.management.domain.usecase.customerUseCase.CustomerUseCase;
-import com.project.management.domain.usecase.mechanicUseCase.mechanicUseCase;
-import com.project.management.domain.usecase.repairsUseCase.repairsUseCase;
-import com.project.management.domain.usecase.vehicleRepairsUseCase.vehicleRepairsUseCase;
-import com.project.management.domain.usecase.vehicleUseCase.vehicleUseCase;
+import com.project.management.domain.usecase.mechanicUseCase.MechanicUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,10 +14,10 @@ public class UseCaseConfig {
         return new CustomerUseCase(repository);
     }
 
-//    @Bean
-//    public mechanicUseCase mechanicUseCase(MechanicRepository repository){
-//        return new mechanicUseCase(repository);
-//    }
+    @Bean
+    public MechanicUseCase mechanicUseCase(MechanicRepository repository){
+        return new MechanicUseCase(repository);
+    }
 //
 //    @Bean
 //    public repairsUseCase repairsUseCase (RepairsRepository repository){

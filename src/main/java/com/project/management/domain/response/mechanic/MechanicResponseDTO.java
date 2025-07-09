@@ -1,4 +1,4 @@
-package com.project.management.domain.model.Mechanic;
+package com.project.management.domain.response.mechanic;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,12 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class MechanicEntity {
+public class MechanicResponseDTO<T> {
 
-    private MechanicResponse data;
+    private T data;
     private String status;
-    private String massage;
+    private String message;
 }

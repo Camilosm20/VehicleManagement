@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CustomerResponseDTO {
+public class CustomerResponseDTO<T> {
 
     private Customer data;
     private String status;
